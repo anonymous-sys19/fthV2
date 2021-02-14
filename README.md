@@ -36,7 +36,7 @@
 * Desarrollo de codigo abierto
 * Desarrollado en Python
 * Version 2.0
-* interacciondel systema
+* interaccion del systema
 * Enfocado para uso principiante y profecional
 
 ##                                   Instalación: 
@@ -77,7 +77,8 @@ como el uso de la herramienta y sus modulos agregados.
 como lo eh mencionado se puede interactuar con las herramientas del systema [/usr/bin]
 los modulos bases son basicos  como [Fuerza bruta a puertos ; ssh, ftp, mysql, :]
 por otro lado, agrege  la interaccion de crear payloads automatizados.
-como principio solo contiene [1 android :[1 windows]]
+como principio solo contiene [1 android :[1 windows[payload con apk original ]]]
+Tambien eh agregado y probado dos aplicaciones [V-recientemente ]como purueba
 tambien contiene una herramienta ya existente que esta disponible en mi github llamada [Hacker]
 Si deceas ver el uso te dejo el <a href="images/video.mkv"> link </a> 
 <br>
