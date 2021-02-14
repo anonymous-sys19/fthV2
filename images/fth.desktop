@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Fth_Linux
+Encoding=UTF-8
+Exec=sh -c "fth"
+Icon=/usr/share/icons/fth.png
+Terminal=true
+Type=Application
