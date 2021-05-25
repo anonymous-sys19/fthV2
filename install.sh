@@ -40,7 +40,7 @@ sudo apt-get install -y xterm > /dev/null
 fi
 
 #zipalign
-which /etc/init.d/zipalign > /dev/null 2>&1
+which zipalign > /dev/null 2>&1
 if [ "$?" -eq "0" ]; then
 echo -e " [ y ] [zipalign]........................[ yes ] ✔"
 sleep 1.5
@@ -48,7 +48,7 @@ else
 echo -e " [ n ] [zipalign]........................[ NOT ] x"
 sleep 1.5
 echo -e " [ 💀 ] [Installing zipalign.....] 💀"
-xterm -T " INSTALLER ZIPALIGN" -geometry 100x30 -e "sudo apt-get install -y zipalign"
+xterm -T " INSTALLER ZIPALIGN" -geometry 100x30 -e "sudo apt-get install zipalign"
 fi 
 
 
@@ -111,12 +111,10 @@ echo -e '\n\n[ * ] [ Espere .....]\n\n'
 echo -n   [ 0 ] Instalando requerimientos pip3...= ;
 sleep 3 & while [ "$(ps a | awk '{print $1}' | grep $!)" ] ; do for X in '-' '\' '\' '/'; do echo -en "\b$X"; sleep 0.1; done; done
 echo ""
-pip install re
-pip install random
-pip install time
-pip install requests
-pip install py-getch
+pip3 install requests
+pip3 install py-getch
 apt-get install python3-tk
+pip3 socket
 apt-get install libatk-adaptor libgail-common
 sudo apt-get purge fcitx-module-dbus
 
