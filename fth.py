@@ -8,6 +8,7 @@ import re
 import socket
 from os import system, name, path
 
+
 user_pass = ('''admin
 admi
 admin
@@ -478,7 +479,15 @@ def menu ():
     print(' \n            -------------------welcome---------------------\n')
 menu()  
 
-def brutedum():
+def brutedum () :
+    class Color:
+        no_colored = "\033[0m"
+        white_bold = "\033[1;37m"
+        blue_bold = "\033[1;96m"
+        green_bold = "\033[1;92m"
+        red_bold = "\033[1;91m"
+        yellow_bold = "\033[1;33m"
+
     def banner():
         print(Color.yellow_bold+"""888888                           888888                """+Color.no_colored+"""BRUTE            
     """+Color.yellow_bold+"""8    8   eeeee  e   e eeeee eeee 8    8 e   e eeeeeee  """+Color.no_colored+"""FORCE
@@ -558,7 +567,7 @@ def brutedum():
         except KeyboardInterrupt:
             print()
             print(Color.white_bold+'Exiting...')
-            creacion()
+            exit()
         except ValueError:
             print(Color.red_bold+'[!]'+Color.no_colored+' Invalid input')
             change_port(victim)
@@ -583,7 +592,7 @@ def brutedum():
         except KeyboardInterrupt:
             print()
             print(Color.white_bold+'Exiting...')
-            creacion()
+            exit()
         except IndexError:
             invalid_choice()
 
@@ -602,7 +611,7 @@ def brutedum():
         except KeyboardInterrupt:
             print()
             print(Color.white_bold+'Exiting...')
-            creacion()
+            exit()
         except IndexError:
             invalid_choice()
 
@@ -632,7 +641,7 @@ def brutedum():
         except KeyboardInterrupt:
             print()
             print(Color.white_bold+'Exiting...')
-            creacion()
+            exit()
         except IndexError:
             invalid_choice()
 
@@ -664,11 +673,11 @@ def brutedum():
                 clear()
                 print(Color.red_bold+'[!]'+Color.no_colored+' Please re-enter your choice')
                 menu(victim)
-          
+        
         except KeyboardInterrupt:
             print()
             print(Color.white_bold+'Exiting...')
-            creacion()
+            exit()
         except ValueError:
             invalid_choice()
 
@@ -702,7 +711,7 @@ def brutedum():
         except KeyboardInterrupt:
             print()
             print(Color.white_bold+'Exiting...')
-            creacion()
+            exit()
         except ValueError:
             invalid_choice()
 
@@ -807,7 +816,7 @@ def brutedum():
         except KeyboardInterrupt:
             print()
             print(Color.white_bold+'Exiting...')
-            creacion()
+            exit()
         except IndexError:
             invalid_choice()
 
@@ -892,7 +901,7 @@ def brutedum():
         except KeyboardInterrupt:
             print()
             print(Color.white_bold+'Exiting...')
-            creacion()
+            exit()
         except IndexError:
             invalid_choice()
 
@@ -979,14 +988,14 @@ def brutedum():
         except KeyboardInterrupt:
             print()
             print(Color.white_bold+'Exiting...')
-            creacion()
+            exit()
         except IndexError:
             invalid_choice()
 
 
     clear()
     banner()
-    start()
+    start()   
 
 def chmod ():
     os.system('chmod 777 -R *')
