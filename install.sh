@@ -1,6 +1,33 @@
 #!/usr/bin
+#Copyright 2022 fthV2.3
 
-echo -e '   
+#Github: 
+
+# Installer fthv2
+
+# Colors
+red='\e[1;31m'
+default='\e[0m'
+yellow='\e[0;33m'
+orange='\e[38;5;166m'
+green='\033[92m'
+
+# Location
+path=$(pwd)
+
+# Check root 
+if [ "$(id -u)" != "0" ] > /dev/null 2>&1; then
+echo -e '\n$red[x] Este script necesita permisos root.' 1>&2
+exit
+fi
+
+echo -e "\n      Derechos de autor:   N | Copyright (c) 2022\n"
+sleep 1
+echo -e '      Derechos reservados: S | Licensia para: (c) fth\n\n'
+sleep 1
+
+# IMGFONT
+echo -e "
         _______  _______  __   __ 
         |       ||       ||  | |  |
         |    ___||_     _||  |_|  |
@@ -15,124 +42,131 @@ echo -e '
                     |   | |  _    ||_____  |  |   |  |       ||   |___ |   |___ 
                     |   | | | |   | _____| |  |   |  |   _   ||       ||       |
                     |___| |_|  |__||_______|  |___|  |__| |__||_______||_______|
+"
 
-'
+# Check dependencies
+echo -e $yellow
+echo -n [*] Checando dependencias...= ;
+sleep 3 & while [ "$(ps a | awk '{print $1}' | grep $!)" ] ; do for X in '-' '\' '|' '/'; do echo -en "\b$X"; sleep 0.1; done; done 
+echo ""
 
 
-path=$(pwd)
-printf '
-		|******************************************************|
-		| [ * ]          Instalacion fth-linux          [ * ]  |
-		|******************************************************|
-'
-#xterm
+# Check if xterm exists
 which xterm > /dev/null 2>&1
 if [ "$?" -eq "0" ]; then
 echo ""
-echo -e " [ y ] [Xterm]..........................[ yes ] ✔"
+echo -e "$green[✔][Xterm]------------------------->[ OK ]"
 sleep 1.5
 else
 echo ""
-echo -e " [ n ] [Xterm]...........................[ NOT ] x"
+echo -e "$red[x][Xterm]---------------------->[ NOT FOUND ]"
 sleep 1.5
-echo -e " [ 💀 ] [Installing Xterm...] 💀"
+echo -e "$yellow[!][Installing Xterm...]"
 sudo apt-get install -y xterm > /dev/null
 fi
 
-#zipalign
-which zipalign > /dev/null 2>&1
-if [ "$?" -eq "0" ]; then
-echo -e " [ y ] [zipalign]........................[ yes ] ✔"
-sleep 1.5
-else
-echo -e " [ n ] [zipalign]........................[ NOT ] x"
-sleep 1.5
-echo -e " [ 💀 ] [Installing zipalign.....] 💀"
-xterm -T " INSTALLER ZIPALIGN" -geometry 100x30 -e "sudo apt-get install zipalign"
-fi 
-
-
-#postgresql
+# Check if postgresql exists
 which /etc/init.d/postgresql > /dev/null 2>&1
 if [ "$?" -eq "0" ]; then
-echo -e " [ y ] [Postgresql].....................[ yes ] ✔"
+echo -e "$green[✔][Postgresql].....................[ OK ]"
 sleep 1.5
 else
-echo -e " [ n ] [Postgresql]........................[ NOT ] x"
+echo -e "$red[x][Postgresql]..................[ NOT FOUND ]"
 sleep 1.5
-echo -e " [ 💀 ] [Installing Postgresql...] 💀"
-xterm -T " INSTALLER POSTGRESQL" -geometry 100x30 -e "sudo apt-get install -y postgresql"
+echo -e "$yellow[!][Installing Postgresql...]"
+xterm -T "INSTALLER POSTGRESQL" -geometry 100x30 -e "sudo apt-get install -y postgresql"
 fi 
 
-#metasploit framework 
+# Check if metasploit framework exists 
 which msfconsole > /dev/null 2>&1
 if [ "$?" -eq "0" ]; then
-echo -e " [ y ] [Metasploit Framework]...........[ yes ] ✔"
+echo -e "$green[✔][Metasploit Framework]...........[ OK ]"
 sleep 1.5
 else
-echo -e " [ n ] [Metasploit Framework]...........[ NOT ] x"
+echo -e "$red[x][Metasploit Framework]........[ NOT FOUND ]"
 sleep 1.5
-echo -e " [ 💀 ][Installing Metasploit-Framework...] 💀"
+echo -e "$yellow[!][Installing Metasploit-Framework...]"
 xterm -T "INSTALLER METASPLOIT FRAMEWORK" -geometry 100x30 -e "curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall && chmod 755 msfinstall && ./msfinstall && sudo apt-get update && apt-get upgrade"
 fi
 
-# apktool
+# Check if apktool exists 
 which apktool > /dev/null 2>&1
 if [ "$?" -eq "0" ]; then
-echo -e " [ y ] [Apktool]........................[ yes ] ✔"
+echo -e "$green[✔][Apktool]........................[ OK ]"
 sleep 1.5
 else
-echo -e " [ n ] [Apktool]........................[ NOT ] x"
+echo -e "$red[x][Apktool].....................[ NOT FOUND ]"
 sleep 1.5
-echo -e " [ 💀 ][Installing Apktool...] 💀"
+echo -e "$yellow[!][Installing Apktool...]"
 xterm -T "INSTALLER APKTOOL" -geometry 100x30 -e "wget -O apktool.jar https://bitbucket.org/iBotPeaches/apktool/downloads/apktool_2.4.0.jar && wget https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool && mv apktool* /usr/local/bin && chmod +x /usr/local/bin/apktool*"
+fi
+
+# Check if jarsigner exists
+which jarsigner > /dev/null 2>&1
+if [ "$?" -eq "0" ]; then
+echo -e "$green[✔][Jarsigner]......................[ OK ]"
+sleep 1.5
+else
+echo -e "$red[x][Jarsigner]...................[ NOT FOUND ]"
+sleep 1.5
+echo -e "$yellow[!][Installing Jarsigner...]"
+xterm -T "INSTALLER JARSIGNER" -geometry 100x30 -e "sudo apt-get install default-jdk"
+fi
+
+# Check if zipalign exists
+which zipalign > /dev/null 2>&1
+if [ "$?" -eq "0" ]; then
+echo -e "$green[✔][Zipalign].......................[ OK ]"
+sleep 1.5
+else
+echo -e "$red[x][Zipalign]....................[ NOT FOUND ]"
+sleep 1.5
+echo -e "$yellow[!][Installing Zipalign...]"
+xterm -T "INSTALLER ZIPALIGN" -geometry 100x30 -e "sudo apt-get install -y zipalign"
 fi
 
 
 # Check if ngrok exists
 arch=`arch`
 if [ -f "ngrok" ]; then
-echo -e " [ y ] [Ngrok]..........................[ yes ] ✔"
+echo -e "$green[✔][Ngrok]..........................[ OK ]"
 sleep 1.5
 else
-echo -e " [ n ] [Ngrok]..........................[ NOT ] x"
+echo -e "$red[x][Ngrok]........................[ NOT FOUND ]"
 sleep 1.5
-echo -e " [ 💀 ] [Downloading ngrok----] 💀"
+echo -e "$yellow[!][Downloading ngrok...]"
 if [ "$arch" ==  "x86_64" ]; then
-xterm -T " DOWNLOAD NGROK" -geometry 100x30 -e "wget https://bin.equinox.io/a/kpRGfBMYeTx/ngrok-2.2.8-linux-amd64.zip && unzip ngrok-2.2.8-linux-amd64.zip"
+xterm -T "DOWNLOAD NGROK" -geometry 100x30 -e "wget https://bin.equinox.io/a/kpRGfBMYeTx/ngrok-2.2.8-linux-amd64.zip && unzip ngrok-2.2.8-linux-amd64.zip"
 rm ngrok-2.2.8-linux-amd64.zip
 else
-xterm -T " DOWNLOAD NGROK" -geometry 100x30 -e "wget https://bin.equinox.io/a/4hREUYJSmzd/ngrok-2.2.8-linux-386.zip && unzip ngrok-2.2.8-linux-386.zip"
+xterm -T "DOWNLOAD NGROK" -geometry 100x30 -e "wget https://bin.equinox.io/a/4hREUYJSmzd/ngrok-2.2.8-linux-386.zip && unzip ngrok-2.2.8-linux-386.zip"
 rm ngrok-2.2.8-linux-386.zip
 fi
 fi
 
-echo -e '\n\n[ * ] [ Espere .....]\n\n'
-echo -n   [ 0 ] Instalando requerimientos pip3...= ;
-sleep 3 & while [ "$(ps a | awk '{print $1}' | grep $!)" ] ; do for X in '-' '\' '\' '/'; do echo -en "\b$X"; sleep 0.1; done; done
+
+
+
+# Installing requirements
+echo -e $yellow
+echo -n [*] Instalando requerimientos de python...= ;
+sleep 3 & while [ "$(ps a | awk '{print $1}' | grep $!)" ] ; do for X in '-' '\' '|' '/'; do echo -en "\b$X"; sleep 0.1; done; done
 echo ""
-pip3 install requests
-pip3 install py-getch
+echo -e $green
 apt-get install python3-tk
-pip3 socket
 apt-get install libatk-adaptor libgail-common
 sudo apt-get purge fcitx-module-dbus
 
 
-printf "\n      Derechos de autor:   N | Copyright (c) 2021\n"
-sleep 1
-printf '      Derechos reservados: S | Licensia para: (c) fth\n\n'
-sleep 1
-printf 'Creando orden dependencia: | 01 \n'
-sleep 0.70
-printf 'Creando acceso directo:    | 02 \n'
-sleep 1
-printf 'Creando Icono en el menu:  | 03 \n'
-sleep 0.50
-printf 'Escribiendo acceso directo:| 04 \n\n'
-sleep 1
-echo -e "$green[!] ¿Press ? (y) para continuar"
-echo -ne "fth >> $default"
+# Shortcut for FTHV2.3
+echo -e $yellow
+echo -n [*] Configurando el acceso directo...= ;
+sleep 3 & while [ "$(ps a | awk '{print $1}' | grep $!)" ] ; do for X in '-' '\' '|' '/'; do echo -en "\b$X"; sleep 0.1; done; done
+echo ""
+echo ""
+echo -e "$green[!] ¿Desea poder ejecutar fthV2 desde el menu? {y/n}"
+echo -e "$default"
+echo -ne "fth >> $red"
 read -r option
 case "$option" in
 
@@ -147,11 +181,19 @@ chmod +x /usr/local/bin/fth
 cp images/fth.desktop /usr/share/applications/fth.desktop
 cp images/fth.png /usr/share/icons/fth.png
 sleep 2
-echo -e 
-echo -e "       ╔───────────────────────────────────────────────╗"
-echo -e "       |[@] Instalacion completa [write [fth] to open  |"
-echo -e "       ┖───────────────────────────────────────────────┙"
+echo -e $green
+echo -e "╔──────────────────────────────────────────────────────────╗"
+echo -e "|[✔] Installation complete. write 'fth' para correr fthV2.3|"
+echo -e "┖──────────────────────────────────────────────────────────┙"
 fi
+;;
+
+n|N)
+sleep 2
+echo -e $green
+echo -e "╔──────────────────────────╗"
+echo -e "|[✔] Instalacion completa..|"
+echo -e "┖──────────────────────────┙"
 ;;
 esac
 exit

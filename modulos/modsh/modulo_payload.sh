@@ -1,7 +1,7 @@
 #!/bin/bash
 function limpiar_pantalla {
     clear    
-        }
+}
 
 echo
 echo

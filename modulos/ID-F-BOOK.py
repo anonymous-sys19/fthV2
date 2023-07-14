@@ -15,14 +15,15 @@ def codeFb ():
 
 
 
-	url = (raw_input("Pagina del facebook: > "))
+url = input("Pagina del facebook: > ")
 
-	time.sleep(2)
+time.sleep(2)
 
-	idre = re.compile('"entity_id":"([0-9]+)"')
+idre = re.compile('"entity_id":"([0-9]+)"')
 
-	page = requests.get(url)
+page = requests.get(url)
 
-	print idre.findall(page.content)
+print(idre.findall(page.content))
+
 
 codeFb()

@@ -1,0 +1,6 @@
+ipinfo
+requests
+pathlib
+zenipy
+pgrep
+py-getch
