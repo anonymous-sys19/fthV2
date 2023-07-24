@@ -1,7 +1,6 @@
-
 import platform
-from partials import windows as windows_Platform
-from partials import linux as linux_Platform
+from windows import windows as windows_Platform
+from linux import linux as linux_Platform
 
 try:
 
@@ -11,11 +10,13 @@ try:
         if sistema == "Windows":
             print("[+] {}".format(sistema))
             windows_Platform
+            pass
             
         elif sistema == 'Linux':
             print("[+] {}".format(sistema))
             linux_Platform
+            pass
 
-except:
+except KeyboardInterrupt:
     Exception("{+} File type Eror: Solo admite Linux and Windows")
     exit()
