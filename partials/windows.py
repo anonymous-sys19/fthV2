@@ -3,13 +3,14 @@ import random
 import sys
 import time
 
+
+
 def colores():
-    listas = ['\033[1;36m', '\033[1;31m', '\033[1;34m', '\033[1;30m', '\033[1;37m', '\033[1;35m', '\033[1;32m',
-              '\033[1;33m']
+    listas = ['\033[1;36m', '\033[1;31m', '\033[1;34m', '\033[1;30m', '\033[1;37m', '\033[1;35m', '\033[1;32m', '\033[1;33m']
     indice = random.randrange(len(listas))
     lista = listas[indice]
     print(lista)
-
+  
 
 def slowprint(s):
     for c in s + '\n':
